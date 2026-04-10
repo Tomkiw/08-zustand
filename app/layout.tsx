@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     title: "NoteHub",
     description: "free notes for all peoples",
     url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+    siteName: "Notehub",
+    type: "website",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
@@ -21,6 +23,12 @@ export const metadata: Metadata = {
         alt: "image notehub",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NoteHub",
+    description: "Free notes for all people",
+    images: ["https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"],
   },
 };
 
