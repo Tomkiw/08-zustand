@@ -42,7 +42,9 @@ export default function NotesClient({ tag }: NotesClientProps) {
           />
         )}
 
-        <Link href="/notes/action/create">Create note +</Link>
+        <Link className={css.button} href="/notes/action/create">
+          Create note +
+        </Link>
       </header>
 
       {isLoading && <p>Is loading...</p>}
