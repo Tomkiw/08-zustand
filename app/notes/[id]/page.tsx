@@ -1,6 +1,3 @@
-// /notes/[id] – сторінка деталей однієї нотатки (динамічний маршрут).
-//  На цій сторінці відображається повна інформація про одну нотатку за її id.
-
 import NoteDetailsClient from "./NoteDetails.client";
 import { fetchNoteById } from "@/lib/api";
 import {

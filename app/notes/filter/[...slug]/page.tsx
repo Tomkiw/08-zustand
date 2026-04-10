@@ -5,10 +5,36 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import { Metadata } from "next";
 
 interface FilterPageProps {
   params: Promise<{ slug: string[] }>;
   searchParams: Promise<{ page?: string; search?: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: FilterPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const nameFilter = slug[0];
+
+  return {
+    title: `Notehub: ${nameFilter} `,
+    description: `Browse notes filtered by category: ${nameFilter}`,
+    openGraph: {
+      title: `Notes — ${nameFilter}`,
+      description: `Browse notes filtered by category: ${nameFilter}`,
+      url: `/notes/filter/${nameFilter}`,
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: `Notes — ${nameFilter}`,
+        },
+      ],
+    },
+  };
 }
 
 export default async function FilterPage({
