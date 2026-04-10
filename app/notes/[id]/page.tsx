@@ -5,17 +5,43 @@ import {
   HydrationBoundary,
   dehydrate,
 } from "@tanstack/react-query";
+import { Metadata } from "next";
 
 interface NoteProps {
   params: Promise<{ id: string }>;
 }
 
-async function NoteDetailsPage({ params }: NoteProps) {
+export async function generateMetadata({
+  params,
+}: NoteProps): Promise<Metadata> {
+  const { id } = await params;
+  const note = await fetchNoteById(id);
+
+  return {
+    title: `Note: ${note.title}`,
+    description: `${note.content.slice(0, 160)}`,
+    openGraph: {
+      title: `${note.title}`,
+      description: `${note.content.slice(0, 160)}`,
+      url: `/notes/${note.id}`,
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: `Notes — ${note.title}`,
+        },
+      ],
+    },
+  };
+}
+
+export async function NoteDetailsPage({ params }: NoteProps) {
   const { id } = await params;
 
   const queryClient = new QueryClient();
 
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: ["note", id],
     queryFn: () => fetchNoteById(id),
   });
