@@ -23,7 +23,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${note.title}`,
       description: `${note.content.slice(0, 160)}`,
-      url: `/notes/${note.id}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/notes/${note.id}`,
       images: [
         {
           url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",

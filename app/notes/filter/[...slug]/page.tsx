@@ -24,7 +24,7 @@ export async function generateMetadata({
     openGraph: {
       title: `Notes — ${nameFilter}`,
       description: `Browse notes filtered by category: ${nameFilter}`,
-      url: `/notes/filter/${nameFilter}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/notes/filter/${nameFilter}`,
       images: [
         {
           url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
